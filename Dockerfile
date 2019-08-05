@@ -1,3 +1,3 @@
-FROM alpine:3.3
+FROM alpine:3.10
 RUN apk add --no-cache ca-certificates
 CMD ["echo", "Hello"]
