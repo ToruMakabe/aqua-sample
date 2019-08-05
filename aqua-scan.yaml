@@ -2,7 +2,7 @@ version: v1.0.0
 
 secrets:
   - id: key
-    keyvault: https://xxx.vault.azure.net/secrets/aquakey
+    keyvault: https://tomakabe-aqua-sample.vault.azure.net/secrets/aqua-key
 
 steps:
   - build: . -t {{.Run.Registry}}/image:{{.Run.ID}}
