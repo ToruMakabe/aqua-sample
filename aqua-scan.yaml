@@ -5,11 +5,11 @@ secrets:
     keyvault: https://tomakabe-aqua-sample.vault.azure.net/secrets/aqua-key
 
 steps:
-  - build: . -t {{.Run.Registry}}/image:{{.Run.ID}}
+  - build: . -t {{.Run.Registry}}/alpinehello:{{.Run.ID}}
 
   # Create a new Dockerfile with the scanner added to the previous image.
   - cmd: |
-      bash -c 'echo "FROM {{.Run.Registry}}/image:{{.Run.ID}}
+      bash -c 'echo "FROM {{.Run.Registry}}/alpinehello:{{.Run.ID}}
       ADD https://get.aquasec.com/microscanner /
       RUN chmod +x /microscanner
       RUN /microscanner {{.Secrets.key}}" > scan.Dockerfile'
@@ -18,4 +18,4 @@ steps:
   - build: . -f scan.Dockerfile -t scanned
 
   # Only push the image if the scan was successful.
-  - push: ["{{.Run.Registry}}/image:{{.Run.ID}}"]
+  - push: ["{{.Run.Registry}}/alpinehello:{{.Run.ID}}"]
